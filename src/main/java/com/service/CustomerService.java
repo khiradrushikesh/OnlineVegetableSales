@@ -2,6 +2,10 @@ package com.service;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import java.util.regex.Matcher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.advices.ResourceNotFoundException;
@@ -13,6 +17,41 @@ public class CustomerService {
 	
 	  @Autowired 
 	  CustomerRepo repo;
+	  
+	  Logger logger=org.slf4j.LoggerFactory.getLogger(CustomerService.class);
+	  
+	  public Customer registerUser(Customer customer)  throws ResourceNotFoundException {
+			
+			if(repo.existsById(customer.getCid())) {
+				throw new ResourceNotFoundException("User Already exists!");
+				}
+			
+			//E-mail Validation
+			String emailregex = "^[A-Za-z0-9+_.-]+@(.+)$";
+			Pattern emailpattern = Pattern.compile(emailregex);
+			Matcher emailmatcher = emailpattern.matcher(customer.getEmailId());
+			
+			//Password Validation 
+			String passRegex = "[a-zA-Z0-9]{8,20}";
+			Pattern passPattern = Pattern.compile(passRegex);
+			Matcher passMatcher = passPattern.matcher(customer.getPassword());
+			
+			
+			if(emailmatcher.matches()==false && passMatcher.matches()==false) {
+				logger.error("Invalid format of Email and Password");
+			 }
+			else if(emailmatcher.matches()==true && passMatcher.matches()==false) {
+				logger.error("Invalid Password");
+			 }
+			 else if(emailmatcher.matches()==false && passMatcher.matches()==true) {
+				 logger.error("Invalid Email Id");
+			 }
+	        if(emailmatcher.matches()==true && passMatcher.matches()==true) {
+	        	logger.info("User signed up \n" + "WELCOME " + customer.getCname());
+	        }
+	        repo.save(customer);
+			return customer;
+		}
 	  
 	  public Customer addCustomer(Customer c) 
 	  { 
@@ -75,5 +114,11 @@ public class CustomerService {
 				  List<Customer> lc=repo.findByCitySorted(city); 
 				  return lc;
 			   }
+
+			public static Customer signIn(String emailId, String password, int cid) {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			 
-}
+
+			  }

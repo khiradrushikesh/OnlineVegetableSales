@@ -34,20 +34,28 @@ public class CustomerController {
 		return msg;
 	}
 	
-	/*
-	 * @PostMapping(value = "/Validator", consumes= {MediaType.ALL_VALUE}) public
-	 * String getData(@RequestBody @Valid Customer data) {
-	 * System.out.println("Data Added..."); return data.getCname(); }
-	 */
+	@GetMapping("/signIn")
+	public Customer signInUser(@RequestBody String emailId, String password, int cid)  {
+		return CustomerService.signIn(emailId, password, cid);
+	}
 	 
 	
-	/*
-	 * @GetMapping(path="/addData") public Customer customer() { Customer c = new
-	 * Customer(); c.setCid(22); c.setCname("Rushi");
-	 * c.setCemail("Rushi@gmail.com"); c.setCphoneno("9988998877");
-	 * c.setCdob("16-06-1996"); c.setCaddress("Vedant nagar, Railway Station road");
-	 * c.setCity("Aurangabad"); return c; }
-	 */
+	
+	  @GetMapping(path="/addData") 
+	  public Customer customer() 
+	  {
+		  Customer c = new  Customer(); 
+		  c.setCid(22); 
+		  c.setCname("Rushi");
+		  c.setEmailId("Rushi@gmail.com");
+		  c.setPassword("Rushi@1234");
+		  c.setCphoneno("9988998877");
+		  c.setCdob("16-06-1996"); 
+		  c.setCaddress("Vedant nagar, Railway Station road");
+		  c.setCity("Aurangabad"); 
+		  return c; 
+	 }
+	 
 	 
 	
 	@PostMapping(path="/addCustomer")

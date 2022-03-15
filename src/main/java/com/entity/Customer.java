@@ -6,13 +6,17 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Columns;
+import org.springframework.context.annotation.Primary;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -22,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 public class Customer {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@NotNull
 	private int cid;
@@ -31,6 +35,14 @@ public class Customer {
 	@Size(min=3, message = "Customer Name is required")
 	private String cname;
 	
+	@NotNull
+	@Size(message = "Customer Email Id is not Valid")
+	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
+	private String emailId;
+	
+	@NotNull
+	@NotEmpty
+	private String password;
 	
 	@NotNull
 	@Size(min=10, max=10,  message = "Customer Phone Number is required")
@@ -65,6 +77,21 @@ public class Customer {
 		this.cname = cname;
 	}
 
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getCphoneno() {
 		return cphoneno;
@@ -100,8 +127,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [cid=" + cid + ", cname=" + cname + ",  cphoneno=" + cphoneno
-				+ ", caddress=" + caddress + ", cdob=" + cdob + ", city=" + city + "]";
+		return "Customer [cid=" + cid + ", cname=" + cname + ", emailId=" + emailId + ", password=" + password
+				+ ", cphoneno=" + cphoneno + ", caddress=" + caddress + ", cdob=" + cdob + ", city=" + city + "]";
 	}
 
 	
