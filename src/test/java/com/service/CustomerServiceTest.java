@@ -7,7 +7,12 @@ import org.junit.jupiter.api.Test;
 class CustomerServiceTest {
 
 	@Test
-	void testAddCustomerCustomer() {
+	void testRegisterUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAddCustomer() {
 		fail("Not yet implemented");
 	}
 
@@ -37,7 +42,22 @@ class CustomerServiceTest {
 	}
 
 	@Test
-	void testAddCustomerListOfCustomer() {
+	void testAddCustomers() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetCustomerByCname() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testFindByCitySorted() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testSignIn() {
 		fail("Not yet implemented");
 	}
 

@@ -32,6 +32,8 @@ class CustomerSeriveImplTest {
 		Customer c1 = new Customer();
 		c1.setCid(4);
 		c1.setCname("Amit");
+		c1.setEmailId("Amit@gmail.com");
+		c1.setPassword("Amit@1234");
 		c1.setCphoneno("9876543210");
 		c1.setCdob("01-01-2000");
 		c1.setCaddress("Saptshree Heights");
@@ -40,6 +42,8 @@ class CustomerSeriveImplTest {
 		Customer c2 = new Customer();
 		c1.setCid(5);
 		c1.setCname("Abhishek");
+		c1.setEmailId("Ahishek@gmail.com");
+		c1.setPassword("Abhishek@1234");
 		c1.setCphoneno("9897796666");
 		c1.setCdob("25-12-1998");
 		c1.setCaddress("Nageshwarwadi");
@@ -59,6 +63,8 @@ class CustomerSeriveImplTest {
 		Customer c1 = new Customer();
 		c1.setCid(4);
 		c1.setCname("Amit");
+		c1.setEmailId("Amit@gmail.com");
+		c1.setPassword("Amit@1234");
 		c1.setCphoneno("9876543210");
 		c1.setCdob("2000-01-24");
 		c1.setCaddress("Saptshree Heights");
@@ -70,10 +76,5 @@ class CustomerSeriveImplTest {
 		   assertFalse(Repo.existsById(c1.getCid()));
 	}
 	
-	@Test 
-	void testDeleteCoderById() 
-	{ 
-		Customer c2 = new Customer();
-		
-	}
+	
 }

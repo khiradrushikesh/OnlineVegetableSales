@@ -2,6 +2,8 @@ package com.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +27,16 @@ public class Orders {
 	@NotNull
 	@NotEmpty(message="items is Required")
 	private int items;
+	
+	@OneToOne
+    @JoinColumn(name = "cartId")
+    private Cart cart;
+	
+	@OneToOne
+    @JoinColumn(name = "cid")
+
+	private Comment comment;
+
 	public int getOid() {
 		return oid;
 	}

@@ -2,6 +2,8 @@ package com.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -27,6 +29,10 @@ public class Cart {
 	@NotBlank
 	@Size(max=8,message="Quantity should have atmost 8 characters")
 	private String quantity;
+	
+	@OneToOne
+    @JoinColumn(name = "oid")
+    private Orders order;
 	
 	public int getCartId() {
 		return cartId;

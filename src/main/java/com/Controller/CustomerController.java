@@ -27,12 +27,7 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
-	@GetMapping("/hello")
-	public String helloCustomer()
-	{
-		String msg = "Welcome to Online Vegetable Shop";
-		return msg;
-	}
+	
 	
 	@GetMapping("/signIn")
 	public Customer signInUser(@RequestBody String emailId, String password, int cid)  {

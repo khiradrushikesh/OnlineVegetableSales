@@ -88,11 +88,16 @@ public class CustomerService {
 			  	  public Customer updateCustomer(Customer c) throws Throwable 
 			  	  { 
 			  		  int id=c.getCid(); 
-			  		  Supplier s1= ()->new ResourceNotFoundException("Coder Does not exist in the database"); 
+			  		  Supplier s1= ()->new ResourceNotFoundException("Customer Does not exist in the database"); 
 			  		  Customer c1=repo.findById(id).orElseThrow(s1);
 			  		  
-			  		  c1.setCname(c.getCname()); 
-			  		  c1.setCity(c.getCity()); 
+			  		  c1.setCname(c.getCname());
+			  		  c1.setEmailId(c.getEmailId());
+			  		  c1.setPassword(c.getPassword());
+			  		  c1.setCphoneno(c.getCphoneno());
+			  		  c1.setCdob(c.getCdob());
+			  		  c1.setCaddress(c.getCaddress());
+			  		  c1.setCity(c.getCity());
 			  		  repo.save(c1); 
 			  		  return c1;
 			  }

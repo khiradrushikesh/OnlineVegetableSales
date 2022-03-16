@@ -1,13 +1,17 @@
 package com.entity;
-
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -60,6 +64,13 @@ public class Customer {
 	@NotNull
 	@Size(min=3, message = "Customer City Name is required")
 	private String city;
+	
+	@OneToOne
+    @JoinColumn(name = "cartId")
+    private Cart cart;
+	
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
+	private Set<Bill> bill;
 
 	public int getCid() {
 		return cid;
